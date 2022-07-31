@@ -13,7 +13,6 @@ class DeleteMember extends React.Component{
     }
 
     changeValue = (event) => {
-        const fieldName = event.target.name;
         this.setState({txt_id: event.target.value})
         this.validateId(event.target.value)
     }
@@ -44,11 +43,10 @@ class DeleteMember extends React.Component{
     }
 
     deleteMemberAPI = () => {
-        const deleteURL = '/People/' + "?id=" + this.state.txt_id;
-            fetch( deleteURL, {method: 'DELETE'})
+            fetch( '/People/' + "?id=" + this.state.txt_id, {method: 'DELETE'})
             .then(response => {
                 console.log(response.status);
-                if(response.status == 200){
+                if(response.status === 200){
                     this.setState({success_msg: "Entry deleted successfully :)"})
                     console.log(this.state.success_msg);
                 } else {
@@ -62,7 +60,7 @@ class DeleteMember extends React.Component{
                 <div className='col-md-8 offset-md-2'>
                 <div className='card'>
                     <div className='card-header bg-custom'>
-                        <h2 class="text-center">Delete Member Form</h2>
+                        <h2 className="text-center">Delete Member Form</h2>
                     </div>
                     <div className='card-body'>
                         <form className='form'>

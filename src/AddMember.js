@@ -1,5 +1,4 @@
 import React from 'react'
-import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 class AddMember extends React.Component{
@@ -29,6 +28,8 @@ class AddMember extends React.Component{
                 this.setState({txt_age: event.target.value})
                 this.validateAge(event.target.value)
                 break;
+            default:
+
         }
     }
 
@@ -37,7 +38,10 @@ class AddMember extends React.Component{
             if(!isNaN(value)) {
                 this.setState({err_msg_name: "Need to enter name"})
                 this.setState({name_flag: false})
-            }
+            } else if (!value.includes('E') && (!value.includes('e'))){
+                this.setState({err_msg_name: "Name must contain an 'e' to join E Member Club"})
+                this.setState({name_flag: false})
+            } 
             else {
                 console.log(this.state.name_flag)
                 this.setState({err_msg_name: ""})
@@ -73,10 +77,10 @@ class AddMember extends React.Component{
     }
 
     addMember = (event) => {
-        if(this.state.name_flag == false) {
+        if(this.state.name_flag === false) {
             this.validateName(this.state.txt_name)
         }
-        if(this.state.age_flag == false) {
+        if(this.state.age_flag === false) {
             this.validateAge(this.state.txt_age)
         }
         if( this.state.name_flag && this.state.age_flag) {
@@ -102,7 +106,7 @@ class AddMember extends React.Component{
            })
             .then(response => {
                 console.log(response.status);
-                if(response.status == 200){
+                if(response.status === 200){
                     this.setState({success_msg: "Entry successfully submited :)"})
                     console.log(this.state.success_msg);
                 } else {
@@ -117,7 +121,7 @@ class AddMember extends React.Component{
                 <div className='col-md-8 offset-md-2'>
                 <div className='card'>
                 <div className='card-header bg-custom'>
-                    <h2 class="text-center">E Member Registration</h2>
+                    <h2 className="text-center">E Member Registration</h2>
                 </div>
                 <div className='card-body'>
                     <form className='form'>
@@ -133,7 +137,7 @@ class AddMember extends React.Component{
                         </div>
                         <br></br>
                         <div className='form-group'>
-                            <button type='button' onClick={this.addMember} className="form-control btn-primary">Add Member</button>
+                            <button type='button' className='form-control btn btn-primary' onClick={this.addMember} >Add Member</button>
                         </div>
                         <span className='text-success'>{this.state.success_msg}</span>
                         <span className='text-danger'>{this.state.err_msg}</span>

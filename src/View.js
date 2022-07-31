@@ -1,5 +1,4 @@
 import React from 'react'
-import axios from 'axios';
 
 class View extends React.Component{
 
@@ -33,15 +32,13 @@ class View extends React.Component{
     drawTable = (result) => {
         var res = "";
         if(result.length > 0) {
-            {
-                res = result.map(item => (
-                    <tr key={item.id}>
-                    <td>{item.id}</td>
-                    <td>{item.name}</td>    
-                    <td>{item.age}</td>    
-                    </tr>
-                ))
-            }
+            res = result.map(item => (
+                <tr key={item.id}>
+                <td>{item.id}</td>
+                <td>{item.name}</td>    
+                <td>{item.age}</td>    
+                </tr>
+            ))
         } else {
             this.setState({error: "No records found"})
         }
@@ -54,7 +51,11 @@ class View extends React.Component{
             <div>
                 <div className='row'>
                     <div className='col-8 offset-2'>
-                        <h3> E Member Registry: </h3>
+                        <div className='card'>
+                            <div className='card-header bg-custom'>
+                                <h2 className="text-center"> E Member Registry: </h2>
+                            </div>
+                        </div>
                         <table className='table table-striped'>
                             <thead>
                                 <tr>
