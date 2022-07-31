@@ -4,10 +4,10 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
-import Home from './Home';
-import View from './View';
-import AddMember from './AddMember';
-import DeleteMember from './DeleteMember';
+import Home from './components/Home';
+import View from './components/View';
+import AddMember from './components/AddMember';
+import DeleteMember from './components/DeleteMember';
 
 function App() {
   return (
