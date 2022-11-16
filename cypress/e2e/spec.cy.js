@@ -1,0 +1,15 @@
+describe('empty spec', () => {
+  it('passes', () => {
+    cy.visit('http://localhost:3000/home#')
+    cy.get('a[class="nav-link"]').contains('View the Registry').click()
+    cy.get('a[class="nav-link"]').contains('Add to the Registry').click()
+    cy.get('input[name="name"]').type('Amalie')
+    cy.get('input[name="age"]').type(28)
+    cy.get('button').contains('Add Member').click()
+    cy.get('span[class="text-success"]').contains('Entry successfully submited :)')
+    cy.get('a[class="nav-link"]').contains('Delete from the Registry').click()
+    cy.get('input[name="id"]').type(12)
+    cy.get('button').contains('Delete').click()
+    cy.get('span[class="text-success"]').contains('Entry deleted successfully :)')
+  })
+})
